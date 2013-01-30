@@ -8,6 +8,8 @@ CACHE_DIR=$2
 # config
 #VERSION="1.8.1"
 #S3_BUCKET="stomita-buildpack-phantomjs"
+GITHUB_ACCOUNT_URL="https://github.com/therealjessesanford"
+REPO_NAME="heroku-buildpack-phantomjs"
 
 # s3 packages
 #FILE_NAME="buildpack-phantomjs-${VERSION}.tar.gz"
@@ -18,10 +20,11 @@ BUILDPACK_PHANTOMJS_PACKAGE="https://github.com/therealjessesanford/heroku-build
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching PhantomJS buildpack binaries"
-  curl $BUILDPACK_PHANTOMJS_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+  #curl $BUILDPACK_PHANTOMJS_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+  git clone $GITHUB_ACCOUNT_URL/$REPO_NAME.git $CACHE_DIR/$REPO_NAME
 fi
 
 echo "-----> Extracting PhantomJS binaries" 
 mkdir -p $BUILD_DIR/vendor
-tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/
+tar zxf $CACHE_DIR/$REPO_NAME/$FILE_NAME -C $BUILD_DIR/vendor/
 ln -s $BUILD_DIR/vendor/$FILE_NAME $BUILD_DIR/vendor/phantomjs
