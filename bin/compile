@@ -18,7 +18,7 @@ FILE_NAME="phantomjs-webdriver-linux-x86_64-binary"
 BUILDPACK_PHANTOMJS_PACKAGE="https://github.com/therealjessesanford/heroku-buildpack-phantomjs/raw/master/${FILE_NAME}.tgz"
 
 mkdir -p $CACHE_DIR
-if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
+if ! [ -e $CACHE_DIR/$REPO_NAME ]; then
   echo "-----> Fetching PhantomJS buildpack binaries"
   #curl $BUILDPACK_PHANTOMJS_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
   git clone $GITHUB_ACCOUNT_URL/$REPO_NAME.git $CACHE_DIR/$REPO_NAME
