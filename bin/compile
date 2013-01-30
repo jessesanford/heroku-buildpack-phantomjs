@@ -26,5 +26,5 @@ fi
 
 echo "-----> Extracting PhantomJS binaries" 
 mkdir -p $BUILD_DIR/vendor
-tar zxf $CACHE_DIR/$REPO_NAME/$FILE_NAME -C $BUILD_DIR/vendor/
+tar zxf $CACHE_DIR/$REPO_NAME/$FILE_NAME.tgz -C $BUILD_DIR/vendor/
 ln -s $BUILD_DIR/vendor/$FILE_NAME $BUILD_DIR/vendor/phantomjs
