@@ -6,12 +6,14 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="1.8.1"
-S3_BUCKET="stomita-buildpack-phantomjs"
+#VERSION="1.8.1"
+#S3_BUCKET="stomita-buildpack-phantomjs"
 
 # s3 packages
-FILE_NAME="buildpack-phantomjs-${VERSION}.tar.gz"
-BUILDPACK_PHANTOMJS_PACKAGE="http://${S3_BUCKET}.s3.amazonaws.com/${FILE_NAME}"
+#FILE_NAME="buildpack-phantomjs-${VERSION}.tar.gz"
+FILE_NAME="phantomjs-webdriver-linux-x86_64-binary"
+#BUILDPACK_PHANTOMJS_PACKAGE="http://${S3_BUCKET}.s3.amazonaws.com/${FILE_NAME}"
+BUILDPACK_PHANTOMJS_PACKAGE="https://github.com/therealjessesanford/heroku-buildpack-phantomjs/raw/master/${FILE_NAME}.tgz"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
@@ -20,6 +22,6 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
 fi
 
 echo "-----> Extracting PhantomJS binaries" 
-mkdir -p $BUILD_DIR/vendor/phantomjs
-tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/phantomjs
-
+mkdir -p $BUILD_DIR/vendor
+tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/
+ln -s $BUILD_DIR/vendor/$FILE_NAME $BUILD_DIR/vendor/phantomjs
